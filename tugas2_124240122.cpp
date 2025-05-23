@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 
-// Struktur node untuk linked list ganda
 struct Buku {
     string judul;
     string penulis;
@@ -10,33 +9,29 @@ struct Buku {
     Buku* next;
 };
 
-// Pointer ke awal dan akhir list
 Buku* head = nullptr;
 Buku* tail = nullptr;
 
-// Fungsi untuk menambahkan buku di depan
 void tambahDepan(string judul, string penulis) {
     Buku* baru = new Buku{judul, penulis, nullptr, head};
     if (head != nullptr)
         head->prev = baru;
     else
-        tail = baru; // Jika list kosong, tail juga menunjuk ke baru
+        tail = baru;
     head = baru;
     cout << "Buku berhasil ditambahkan di depan.\n";
 }
 
-// Fungsi untuk menambahkan buku di belakang
 void tambahBelakang(string judul, string penulis) {
     Buku* baru = new Buku{judul, penulis, tail, nullptr};
     if (tail != nullptr)
         tail->next = baru;
     else
-        head = baru; // Jika list kosong, head juga menunjuk ke baru
-    tail = baru;
+        head = baru; 
     cout << "Buku berhasil ditambahkan di belakang.\n";
 }
 
-// Fungsi untuk menghapus buku berdasarkan judul
+
 void hapusBuku(string judul) {
     Buku* hapus = head;
     while (hapus != nullptr && hapus->judul != judul)
@@ -61,7 +56,6 @@ void hapusBuku(string judul) {
     cout << "Buku berhasil dihapus.\n";
 }
 
-// Fungsi untuk menampilkan daftar buku
 void tampilkanBuku() {
     if (head == nullptr) {
         cout << "Daftar buku kosong.\n";
@@ -78,8 +72,7 @@ void tampilkanBuku() {
     }
 }
 
-// Fungsi menu
-void menu() {
+int main () {
     int pilihan;
     string judul, penulis;
 
@@ -92,7 +85,7 @@ void menu() {
         cout << "5. Keluar\n";
         cout << "Pilih menu: ";
         cin >> pilihan;
-        cin.ignore(); // Membersihkan newline
+        cin.ignore();
 
         switch (pilihan) {
             case 1:
@@ -123,12 +116,7 @@ void menu() {
             default:
                 cout << "Pilihan tidak valid. Coba lagi.\n";
         }
-
     } while (pilihan != 5);
-}
-
-// Fungsi utama
-int main() {
-    menu();
     return 0;
 }
+
